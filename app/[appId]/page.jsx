@@ -23,21 +23,31 @@ export default function AppDetailsPage({ params }) {
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
-  // const handleInstallClick = () => {
-  //   setLoading(true);
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //     Redirect to google.com
-  //   }, 5000);
-  // };
-
   const handleInstallClick = () => {
-    
+    setLoading(true);
     if (selectedImage) {
-      window.location.href = "https://www.google.com";
 
+      setTimeout(() => {
+        setLoading(false);
+        // Redirect to google.com
+        if(appId == 1){
+
+          window.location.href = "https://www.google.com";
+        } else if(appId == 2){
+
+          window.location.href = "https://www.facebook.com";
+        } 
+        else if(appId == 3){
+
+          window.location.href = "https://www.github.com";
+        } 
+
+
+      }, 5000);
     }
+
   };
+
 
   useEffect(() => {
     if (!loading) {
@@ -114,24 +124,18 @@ export default function AppDetailsPage({ params }) {
                     </h2>
                   </div>
                 </div>
-                {/* {loading ? (
+                {loading ? (
                   <Loader />
-                ) : ( */}
-                {/* <button
-                  className="flex mx-auto sm:mx-0 text-[12px] sm:text-[14px] font-[900] text-white uppercase bg-[--pulper] p-[15px] rounded-full w-fit"
-                  onClick={handleInstallClick}
-                  disabled={!selectedImage}
-                >
-                  install
-                </button> */}
-                <button
-        className={`flex mx-auto sm:mx-0 text-[12px] sm:text-[14px] font-[900] text-white uppercase p-[15px] rounded-full w-fit ${selectedImage ? 'bg-[--pulper]' : 'bg-gray-300'}`}
-        onClick={handleInstallClick}
-        disabled={!selectedImage}
-      >
-        install
-      </button>
-                {/* )} */}
+                ) : (
+
+                  <button
+                    className={`flex mx-auto sm:mx-0 text-[12px] sm:text-[14px] font-[900] text-white uppercase p-[15px] rounded-full w-fit ${selectedImage ? 'bg-[--pulper]' : 'bg-gray-300'}`}
+                    onClick={handleInstallClick}
+                    disabled={!selectedImage}
+                  >
+                    install
+                  </button>
+                )}
               </div>
 
               <Rating />
